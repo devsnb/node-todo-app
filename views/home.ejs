@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/home.css" />
+		<title>Todo List</title>
+	</head>
+	<body>
+		<header>
+			<div class="container">
+				<h1>TODO App</h1>
+			</div>
+		</header>
+		<main>
+			<div class="container">
+				<div id="add-task">
+					<form method="post" action="/todo">
+						<div class="input-group">
+							<label for="task">DESCRIPTION:</label>
+							<input
+								type="text"
+								name="task"
+								id="task"
+								required
+								placeholder="what do you need to do?"
+							/>
+						</div>
+
+						<div class="input-group">
+							<label for="category">CATEGORY:</label>
+							<select name="category" id="category">
+								<option value="none">None</option>
+								<option value="school">School</option>
+								<option value="work">Work</option>
+								<option value="chores">Chores</option>
+							</select>
+						</div>
+						<div class="input-group">
+							<label for="due-date">DUE DATE:</label>
+							<input type="date" name="due" id="due-date" />
+						</div>
+
+						<button type="submit">Add Task</button>
+					</form>
+				</div>
+
+				<div id="tasks">
+					<ul class="todo-list">
+						<% for(let todo of todos) { %>
+						<li class="list-item" id="<%= todo._id %>">
+							<div class="list-group">
+								<% if(!todo.completed) {%>
+								<input type="checkbox" name="task" />
+								<%} else { %>
+
+								<input type="checkbox" name="task" checked />
+								<%}%>
+								<div class="">
+									<p><%= todo.task %></p>
+									<p>
+										<%= new Intl.DateTimeFormat('en-GB', { year: 'numeric',
+										month: 'long', day: '2-digit'}).format(todo.dueDate) %>
+									</p>
+								</div>
+							</div>
+							<div class="list-group">
+								<p><%= todo.category %></p>
+								<button class="delete" type="button">x</button>
+							</div>
+						</li>
+						<% } %>
+					</ul>
+				</div>
+			</div>
+		</main>
+		<script src="/js/home.js"></script>
+	</body>
+</html>
