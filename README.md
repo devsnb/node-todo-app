@@ -1,4 +1,4 @@
-This project is entirely made with Express.js.
+This project is entirely made with Express.js. I expect nodejs is already installed on your system.
 
 Before executing any command first install all the dependencies of the project by.
 
