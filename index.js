@@ -1,8 +1,9 @@
 const express = require('express')
-const dotenv = require('dotenv')
+if (process.env.NODE_ENV !== 'production') {
+	const dotenv = require('dotenv')
+	dotenv.config()
+}
 const connectDb = require('./config/mongoose')
-
-dotenv.config()
 const PORT = process.env.PORT || 8000
 const app = express()
 
